@@ -1,22 +1,80 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/layout/home'
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/IndexBar',
+    name: 'IndexBar',
+    component: () => import('@/components/IndexBar.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/components/login.vue')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/components/search.vue')
+  },
+  {
+    path: '/HousingInformation',
+    name: 'HousingInformation',
+    component: () => import('@/views/HousingInformation')
+  },
+  {
+    path: '/MyCollection',
+    name: 'MyCollection',
+    component: () => import('@/views/MyCollection')
+  },
+  {
+    path: '/searchs',
+    name: 'searchs',
+    component: () => import('@/views/Rental/components/search')
+  },
+  {
+    path: '/baidu',
+    name: 'baidu',
+    component: () => import('@/views/baidu')
+  },
+  {
+    path: '/MyRent',
+    name: 'MyRent',
+    component: () => import('@/views/MyRent')
+  },
+  {
+    path: '/Rental',
+    name: 'Rental',
+    component: () => import('@/views/Rental')
+  },
+  {
+    path: '/layout',
+    component: () => import('@/views/layout'),
+    children: [
+      {
+        path: '/layout/home',
+        name: 'home',
+        component: () => import('@/views/home')
+      },
+      {
+        name: 'gethome',
+        path: '/layout/gethome',
+        component: () => import('@/views/gethome')
+      },
+      {
+        path: '/layout/getnews',
+        component: () => import('@/views/getnews')
+      },
+      {
+        path: '/layout/myhome',
+        component: () => import('@/views/myhome')
+      }
+    ]
   }
 ]
 
